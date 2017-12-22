@@ -1,0 +1,32 @@
+create table tbl_type(id integer primary key, name varchar2(100));
+
+create sequence type_seq start with 1 increment by 1;
+
+create table tbl_some(id integer primary key, name varchar2(100), type integer, dat date);
+
+create sequence some_seq start with 1 increment by 1;
+
+CREATE OR REPLACE TRIGGER TBL_TYPE_BI 
+BEFORE INSERT ON TBL_TYPE 
+for each row
+BEGIN
+  select type_seq.nextval into :new.id from dual;
+END;
+
+CREATE OR REPLACE TRIGGER TBL_SOME_BI 
+BEFORE INSERT ON TBL_SOME 
+for each row
+BEGIN
+  select some_seq.nextval into :new.id from dual;
+END;
+
+insert into tbl_type(name) values ('первый');
+insert into tbl_type(name) values ('второй');
+insert into tbl_type(name) values ('третий');
+
+insert into tbl_some(name, type, dat) values ('раз',3,sysdate);
+insert into tbl_some(name, type, dat) values ('два',1,sysdate);
+insert into tbl_some(name, type, dat) values ('три',3,sysdate);
+insert into tbl_some(name, type, dat) values ('четыре',2,sysdate);
+
+

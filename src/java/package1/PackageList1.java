@@ -54,7 +54,7 @@ public class PackageList1 {
         Integer type =1;
         Date date = null;
         
-        String sql = "select * from tbl_order";
+        String sql = "select * from tbl_some";
         Connection con = new Connection();
         try{
             

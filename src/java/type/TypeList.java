@@ -36,7 +36,7 @@ public class TypeList {
         Integer id = 1;
         String name = "";
         
-        String sql = "select * from tbl_order";
+        String sql = "select * from tbl_type";
         Connection con = new Connection();
         try{
             ResultSet rs = con.getStatement().executeQuery(sql);
