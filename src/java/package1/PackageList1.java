@@ -12,6 +12,10 @@ import java.util.Map;
 import java.text.*;
 import type.Type;
 import DAO.Connection;
+import java.sql.*;
+import javax.sql.*;
+import oracle.jdbc.*;
+import oracle.jdbc.pool.*;
 
 /**
  *
@@ -45,16 +49,28 @@ public class PackageList1 {
         Package1 p2 = new Package1(2, "два", 1, date);
         pList.put(2,p2); 
         */
+        Integer id = 1;
+        String name = "";
+        Integer type =1;
+        Date date = null;
+        
+        String sql = "select * from tbl_order";
+        Connection con = new Connection();
         try{
-            String sql = "select * from tbl_order where id = "+id_;
-            ResultSet rs = st.executeQuery(sql);
-            this.id = rs.getInt(1);
-            this.name = rs.getString(2);
-            this.type = rs.getInt(3);
-            this.type = rs.getDate(4);
+            
+            ResultSet rs = con.getStatement().executeQuery(sql);
+            while(rs.next()){
+                id = rs.getInt(1);
+                name = rs.getString(2);
+                type = rs.getInt(3);
+                date = rs.getDate(4);
+                
+                Package1 p1 = new Package1(id, name, type, date);
+                pList.put(id,p1);
+            }
         } catch(Exception e){}
         finally{
-            Connection.closeConnection();
+            con.closeConnection();
         }
     }  
       

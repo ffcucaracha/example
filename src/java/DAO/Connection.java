@@ -37,15 +37,20 @@ public class Connection {
         } catch(Exception e) {} 
     }
     
-    public ~Connection()
+    /*public ~Connection()
     {
         try{st.close();} catch(Exception e){}
         try{c.close();} catch(Exception e){}
-    }
+    }*/
     
     public void closeConnection()
     {
         try{st.close();} catch(Exception e){}
         try{c.close();} catch(Exception e){}
+    }
+    
+    public Statement getStatement()
+    {
+        return this.st;
     }
 }

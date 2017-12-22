@@ -10,6 +10,10 @@ import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import DAO.Connection;
+import java.sql.*;
+import javax.sql.*;
+import oracle.jdbc.*;
+import oracle.jdbc.pool.*;
 
 /**
  *
@@ -29,14 +33,21 @@ public class TypeList {
         Type t2 = new Type(2, "тип2");
         tList.put(2,t2);
         */
+        Integer id = 1;
+        String name = "";
+        
+        String sql = "select * from tbl_order";
+        Connection con = new Connection();
         try{
-            String sql = "select * from tbl_order where id = "+id_;
-            ResultSet rs = st.executeQuery(sql);
-            this.id = rs.getInt(1);
-            this.name = rs.getString(2);
+            ResultSet rs = con.getStatement().executeQuery(sql);
+            id = rs.getInt(1);
+            name = rs.getString(2);
+            
+            Type t1 = new Type(id, name);
+            tList.put(id,t1);
         } catch(Exception e){}
         finally{
-            Connection.closeConnection();
+            con.closeConnection();
         }
     }  
       
