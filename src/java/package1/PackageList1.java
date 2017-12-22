@@ -11,6 +11,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.text.*;
 import type.Type;
+import DAO.Connection;
 
 /**
  *
@@ -22,6 +23,7 @@ public class PackageList1 {
     
     public PackageList1()
     {
+        /*
         SimpleDateFormat format = new SimpleDateFormat();
         format.applyPattern("dd.MM.yyyy");
         java.util.Date date = new java.util.Date();
@@ -41,7 +43,19 @@ public class PackageList1 {
         } catch(ParseException e) {}
         
         Package1 p2 = new Package1(2, "два", 1, date);
-        pList.put(2,p2);
+        pList.put(2,p2); 
+        */
+        try{
+            String sql = "select * from tbl_order where id = "+id_;
+            ResultSet rs = st.executeQuery(sql);
+            this.id = rs.getInt(1);
+            this.name = rs.getString(2);
+            this.type = rs.getInt(3);
+            this.type = rs.getDate(4);
+        } catch(Exception e){}
+        finally{
+            Connection.closeConnection();
+        }
     }  
       
     public void deleteFromHashMap(int j)

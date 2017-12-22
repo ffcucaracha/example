@@ -9,10 +9,12 @@ import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import DAO.Connection;
 
 /**
  *
- * @author Анна
+ * @authoimport java.sql.ResultSet;
+r Анна
  */
 public class TypeList {
     private Map<Integer,Type> tList = new LinkedHashMap<Integer, Type>();
@@ -20,11 +22,22 @@ public class TypeList {
     
     public TypeList()
     {
+        /*
         Type t1 = new Type(1, "тип1");
         tList.put(1,t1);
         
         Type t2 = new Type(2, "тип2");
         tList.put(2,t2);
+        */
+        try{
+            String sql = "select * from tbl_order where id = "+id_;
+            ResultSet rs = st.executeQuery(sql);
+            this.id = rs.getInt(1);
+            this.name = rs.getString(2);
+        } catch(Exception e){}
+        finally{
+            Connection.closeConnection();
+        }
     }  
       
     public void deleteFromHashMap(int j)
