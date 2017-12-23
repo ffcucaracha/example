@@ -27,8 +27,7 @@ public class PackageList1 {
     
     public PackageList1()
     {
-        /*
-        SimpleDateFormat format = new SimpleDateFormat();
+        /*SimpleDateFormat format = new SimpleDateFormat();
         format.applyPattern("dd.MM.yyyy");
         java.util.Date date = new java.util.Date();
         String d = new String("");
@@ -49,6 +48,7 @@ public class PackageList1 {
         Package1 p2 = new Package1(2, "два", 1, date);
         pList.put(2,p2); 
         */
+        
         Integer id = 1;
         String name = "";
         Integer type =1;
@@ -68,7 +68,7 @@ public class PackageList1 {
                 Package1 p1 = new Package1(id, name, type, date);
                 pList.put(id,p1);
             }
-        } catch(Exception e){}
+        } catch(SQLException e){ e.printStackTrace(); }
         finally{
             con.closeConnection();
         }

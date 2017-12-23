@@ -32,7 +32,11 @@ public class TypeList {
         
         Type t2 = new Type(2, "тип2");
         tList.put(2,t2);
+        
+        Type t3 = new Type(3, "тип3");
+        tList.put(3,t3);
         */
+        
         Integer id = 1;
         String name = "";
         
@@ -45,7 +49,7 @@ public class TypeList {
             
             Type t1 = new Type(id, name);
             tList.put(id,t1);
-        } catch(Exception e){}
+        } catch(SQLException e){e.printStackTrace();}
         finally{
             con.closeConnection();
         }
